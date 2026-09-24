@@ -1,10 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-
-const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
 ---
 
 <BaseLayout title="Gravel Club Ulm">
@@ -20,28 +15,20 @@ const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
   </section>
 
   <section>
-    <h2>Neuigkeiten</h2>
-    {
-      latestPosts.length === 0 ? (
-        <p class="placeholder">Noch keine Beiträge vorhanden.</p>
-      ) : (
-        <ul class="post-list">
-          {latestPosts.map((post) => (
-            <li class="post-list__item">
-              <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
-              <p class="post-meta">
-                {post.data.pubDate.toLocaleDateString('de-DE', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </p>
-              {post.data.description && <p>{post.data.description}</p>}
-            </li>
-          ))}
-        </ul>
-      )
-    }
-    <p><a href="/blog">Alle Beiträge ansehen &rarr;</a></p>
+    <h2>Auf einen Blick</h2>
+    <ul class="post-list">
+      <li class="post-list__item">
+        <h3><a href="/ueber-uns">Über uns</a></h3>
+        <p>Wer wir sind und wofür der Verein steht.</p>
+      </li>
+      <li class="post-list__item">
+        <h3><a href="/touren">Touren</a></h3>
+        <p>Unsere regelmäßigen Gravel- und Radtouren rund um Ulm.</p>
+      </li>
+      <li class="post-list__item">
+        <h3><a href="/blog">Blog</a></h3>
+        <p>Neuigkeiten, Ankündigungen und Tourberichte.</p>
+      </li>
+    </ul>
   </section>
 </BaseLayout>
