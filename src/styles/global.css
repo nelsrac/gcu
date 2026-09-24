@@ -1,0 +1,273 @@
+/*
+  Clean, neutral starting point for Gravel Club Ulm.
+  No branding assets exist yet — colors, spacing, and fonts are all
+  defined as custom properties here so a future logo/color scheme
+  can be dropped in by changing this block, not by hunting through
+  every component.
+*/
+:root {
+  --color-bg: #fafaf8;
+  --color-surface: #ffffff;
+  --color-text: #23261f;
+  --color-text-muted: #5b5e56;
+  --color-border: #e1e2dc;
+  --color-accent: #4a6b3f;
+  --color-accent-contrast: #ffffff;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --content-width: 72rem;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  padding: var(--space-1) var(--space-2);
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: var(--space-2);
+  top: var(--space-2);
+}
+
+/* Header */
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.site-header__inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.site-header__brand {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--color-accent);
+}
+
+/* Main content */
+main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-3);
+  min-height: 60vh;
+}
+
+.page-header {
+  margin-bottom: var(--space-4);
+}
+
+.page-header p {
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+.placeholder {
+  border: 1px dashed var(--color-border);
+  background: var(--color-surface);
+  padding: var(--space-3);
+  border-radius: 0.5rem;
+  color: var(--color-text-muted);
+}
+
+/* Blog */
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.post-list__item {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: 0.5rem;
+  padding: var(--space-3);
+}
+
+.post-list__item h2 {
+  margin-bottom: var(--space-1);
+  font-size: 1.25rem;
+}
+
+.post-meta {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-1);
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  margin-right: 0.3rem;
+  color: var(--color-text-muted);
+}
+
+.post-content {
+  max-width: 68ch;
+}
+
+.post-content img {
+  max-width: 100%;
+}
+
+/* Forms */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: var(--space-2);
+}
+
+.form-field label {
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field textarea {
+  font: inherit;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.35rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.form-field textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+/* honeypot field, hidden from real visitors */
+.form-field--hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+button,
+.button {
+  font: inherit;
+  font-weight: 600;
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border: none;
+  border-radius: 0.35rem;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+}
+
+button:hover,
+.button:hover {
+  opacity: 0.9;
+}
+
+.form-status {
+  margin-top: var(--space-2);
+  padding: var(--space-2);
+  border-radius: 0.35rem;
+}
+
+.form-status--success {
+  background: #e9f3e6;
+  color: #2f4a28;
+  border: 1px solid #c3dbbc;
+}
+
+.form-status--error {
+  background: #fbeaea;
+  color: #7a2626;
+  border: 1px solid #f0c4c4;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+}
+
+.site-footer__inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: space-between;
+  font-size: 0.9rem;
+}

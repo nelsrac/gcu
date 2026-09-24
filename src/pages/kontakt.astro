@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const success = Astro.url.searchParams.get('success') === '1';
+const error = Astro.url.searchParams.get('error') === '1';
+---
+
+<BaseLayout title="Kontakt" description="Kontakt zum Gravel Club Ulm.">
+  <section class="page-header">
+    <h1>Kontakt</h1>
+    <p>
+      <!-- TODO: Echte Kontaktdaten ergänzen (E-Mail, Ansprechpartner, ggf. Social Media). -->
+      Fragen, Anregungen oder Lust, bei der nächsten Tour mitzufahren? Schreibt uns
+      über das folgende Formular.
+    </p>
+  </section>
+
+  <form id="contact-form" method="post" action="/api/contact" novalidate>
+    <div class="form-field">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" autocomplete="name" required />
+    </div>
+
+    <div class="form-field">
+      <label for="email">E-Mail</label>
+      <input type="email" id="email" name="email" autocomplete="email" required />
+    </div>
+
+    <div class="form-field">
+      <label for="message">Nachricht</label>
+      <textarea id="message" name="message" required></textarea>
+    </div>
+
+    <!-- Honeypot field: real visitors never fill this in. Kept out of the tab order and hidden visually via CSS, not display:none, so basic bots that skip hidden fields still get caught. -->
+    <div class="form-field form-field--hp" aria-hidden="true">
+      <label for="company">Firma</label>
+      <input type="text" id="company" name="company" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <button type="submit">Nachricht senden</button>
+
+    <div id="form-status" role="status" aria-live="polite">
+      {success && <div class="form-status form-status--success">Danke für deine Nachricht! Wir melden uns bald.</div>}
+      {error && <div class="form-status form-status--error">Da ist etwas schiefgelaufen. Bitte versuche es erneut.</div>}
+    </div>
+  </form>
+
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const status = document.getElementById('form-status');
+
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!status) return;
+
+      const formData = new FormData(form);
+      status.innerHTML = '';
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: formData,
+        });
+
+        const result = await response.json().catch(() => ({ ok: response.ok }));
+
+        if (response.ok && result.ok) {
+          form.reset();
+          status.innerHTML =
+            '<div class="form-status form-status--success">Danke für deine Nachricht! Wir melden uns bald.</div>';
+        } else {
+          status.innerHTML =
+            '<div class="form-status form-status--error">Bitte prüfe deine Eingaben und versuche es erneut.</div>';
+        }
+      } catch {
+        status.innerHTML =
+          '<div class="form-status form-status--error">Da ist etwas schiefgelaufen. Bitte versuche es erneut.</div>';
+      }
+    });
+  </script>
+</BaseLayout>
