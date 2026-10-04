@@ -21,16 +21,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class="hero" aria-label="Der neue Auftritt des Gravel Club Ulm">
       <section class="hero__copy" aria-labelledby="hero-title">
         <p class="eyebrow">
-          <span aria-hidden="true"></span> Eine neue Webseite ist unterwegs
+          <span aria-hidden="true"></span> Der Gravel Club Ulm bekommt eine eigene
+          Webseite.
         </p>
         <h1 id="hero-title">Hier entsteht<br />etwas <em>Neues.</em></h1>
         <p class="hero__description">
-          Der Gravel Club Ulm bekommt einen neuen digitalen Treffpunkt. Wir sind
-          ein loser Verbund radbegeisterter Menschen und lieben Graveltouren
-          rund um Ulm.<br>Bis es so weit ist: rauf aufs Rad und raus ins Grüne.
+          Gravel Club Ulm - das ist ein loser Verbund radbegeisterter Menschen
+          aus Ulm und Umgebung und lieben es mit den Gravelbikes unsere schöne
+          Umgebung zu erkunden.
+        </p>
+        <p class="hero__description">
+          Bleibt gespannt und bis dahin: Rauf aufs Rad und raus in die Natur!
         </p>
         <a class="contact-link" href="/kontakt"
-          >Lern uns kennen <span aria-hidden="true">↗</span></a
+          >Jetzt schon Fragen? Schreib uns gerne! <span aria-hidden="true">↗</span></a
         >
         <p class="hero__note">
           <span aria-hidden="true">✳</span> Frische Website. Gleiche Liebe zum Draußensein.
@@ -38,71 +42,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </section>
 
       <div class="hero__art">
-        <div class="art-stamp" aria-hidden="true">
-          <span>LOS,</span><span>RAUS!</span>
-        </div>
-        <svg
-          class="bike"
-          viewBox="0 0 780 560"
-          role="img"
-          aria-labelledby="bike-title"
-        >
-          <title id="bike-title">
-            Ein grünes Gravelbike mit orangefarbenen Details
-          </title>
-          <defs>
-            <linearGradient id="bike-frame" x1=".12" y1=".9" x2=".88" y2=".1">
-              <stop offset="0" stop-color="#236958"></stop>
-              <stop offset="1" stop-color="#538b6e"></stop>
-            </linearGradient>
-          </defs>
-          <!-- Soft, rolling terrain behind the bike -->
-          <circle class="sun" cx="438" cy="248" r="198"></circle>
-          <path
-            class="landscape"
-            d="M82 399c80-74 139-62 202-24 52 31 88 27 140-13 54-42 110-54 181-10 42 26 72 35 115 14v93H82z"
-          ></path>
-          <path
-            class="landscape-line"
-            d="M90 444c78-49 140-51 205-21 63 29 103 24 159-11 60-37 103-40 172-8 39 18 64 23 95 12"
-          ></path>
-
-          <!-- Wheels -->
-          <circle class="tire" cx="190" cy="398" r="126"></circle>
-          <circle class="wheel" cx="190" cy="398" r="112"></circle>
-          <circle class="hub" cx="190" cy="398" r="8"></circle>
-          <circle class="tire" cx="594" cy="398" r="126"></circle>
-          <circle class="wheel" cx="594" cy="398" r="112"></circle>
-          <circle class="hub" cx="594" cy="398" r="8"></circle>
-
-          <!-- Spokes -->
-          <g class="spokes">
-            <path d="M190 286v224M78 398h224M111 319l158 158M111 477l158-158"
-            ></path>
-            <path d="M594 286v224M482 398h224M515 319l158 158M515 477l158-158"
-            ></path>
-          </g>
-
-          <!-- Frame and fork -->
-          <g class="frame">
-            <path d="m190 398 144-185 66 185H190l144-185 125-12-59 197"></path>
-            <path d="m459 201 135 197"></path>
-            <path d="m334 213-17-26h-45"></path>
-            <path d="m459 201 17-30h43"></path>
-          </g>
-          <path class="accent-line" d="m334 213 66 185"></path>
-
-          <!-- Crank, chain, saddle, bars -->
-          <circle class="crank" cx="400" cy="398" r="36"></circle>
-          <circle class="crank-inner" cx="400" cy="398" r="8"></circle>
-          <path class="chain" d="m190 398 210-13m-210 20 210 12"></path>
-          <path class="detail" d="m310 188 48-4m-55-3 7 7m-8-8-5 8"></path>
-          <path class="detail" d="m474 170 50-2m-8-8 8 8-8 8"></path>
-          <path class="detail-orange" d="m190 398 37-62"></path>
-        </svg>
-        <span class="art-caption" aria-hidden="true"
-          >Gute Wege warten nicht.</span
-        >
+        <img
+          class="sunset-photo"
+          src="/sunset.webp"
+          alt="Sonnenuntergang über einer Wiese, aufgenommen aus der Perspektive Radfahrers"
+          width="1800"
+          height="1012"
+          fetchpriority="high"
+          decoding="async"
+        />
       </div>
     </section>
 
@@ -302,85 +250,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     display: grid;
     place-items: center;
     aspect-ratio: 1.2;
+    padding: 0.6rem;
+    border: 1px solid #18372f1c;
+    border-radius: 1rem;
+    background: #fffefa;
+    box-shadow: 0 28px 72px #18372f1a;
   }
 
-  .bike {
-    width: 118%;
-    max-width: 900px;
-    overflow: visible;
-    transform: translate(-2%, 3%);
-  }
-
-  .sun {
-    fill: #e8e9d9;
-  }
-  .landscape {
-    fill: #e2e8dc;
-  }
-  .landscape-line {
-    fill: none;
-    stroke: #b9c8b9;
-    stroke-width: 2;
-    stroke-dasharray: 4 9;
-  }
-  .tire {
-    fill: none;
-    stroke: #244237;
-    stroke-width: 12;
-  }
-  .wheel {
-    fill: none;
-    stroke: #9ba99d;
-    stroke-width: 2;
-  }
-  .hub {
-    fill: #e47d4c;
-    stroke: #f6f5ee;
-    stroke-width: 4;
-  }
-  .spokes {
-    fill: none;
-    stroke: #a9b6a8;
-    stroke-width: 1.5;
-  }
-  .frame {
-    fill: none;
-    stroke: url(#bike-frame);
-    stroke-width: 13;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .accent-line {
-    fill: none;
-    stroke: #e47d4c;
-    stroke-width: 5;
-    stroke-linecap: round;
-  }
-  .crank {
-    fill: #f6f5ee;
-    stroke: #244237;
-    stroke-width: 7;
-  }
-  .crank-inner {
-    fill: #e47d4c;
-  }
-  .chain {
-    fill: none;
-    stroke: #687b70;
-    stroke-width: 2;
-    stroke-dasharray: 3 4;
-  }
-  .detail {
-    fill: none;
-    stroke: #244237;
-    stroke-width: 9;
-    stroke-linecap: round;
-  }
-  .detail-orange {
-    fill: none;
-    stroke: #e47d4c;
-    stroke-width: 8;
-    stroke-linecap: round;
+  .sunset-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.65rem;
+    object-fit: cover;
+    object-position: 62% center;
   }
 
   .art-stamp {
@@ -407,7 +289,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .art-caption {
     position: absolute;
     right: 1%;
-    bottom: 9%;
+    bottom: 5%;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid #18372f1c;
+    border-radius: 999px;
+    background: var(--paper);
     color: var(--green);
     font-family: Georgia, "Times New Roman", serif;
     font-size: 1.25rem;
@@ -466,9 +352,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     .hero__art {
       width: min(100%, 660px);
       margin: -1rem auto -1.5rem;
-    }
-    .bike {
-      width: 110%;
     }
     .art-stamp {
       top: 4%;
