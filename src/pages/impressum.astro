@@ -1,0 +1,76 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="Impressum"
+  description="Impressum und Kontakt zum Betreiber der Website Gravel Club Ulm."
+  eyebrow="GRAVEL CLUB ULM · RECHTLICHES"
+  hideNav={true}
+>
+  <section class="imprint-content" aria-labelledby="operator-heading">
+    <h2 id="operator-heading">Betreiber dieser Website</h2>
+    <address>
+      Carsten Lenz<br />
+      Schlosshalde 12<br />
+      89155 Erbach
+    </address>
+
+    <h2>Kontakt</h2>
+    <p>
+      <span id="protected-email" data-address-codes="101,100,46,109,108,117,45,98,117,108,99,108,101,118,97,114,103,64,115,115,101,114,112,109,105">
+        impress [at] gravelclub-ulm [dot] de
+      </span>
+    </p>
+    <script is:inline>
+      const protectedEmail = document.getElementById('protected-email');
+      const addressCodes = protectedEmail?.getAttribute('data-address-codes');
+
+      if (protectedEmail && addressCodes) {
+        const address = addressCodes
+          .split(',')
+          .reverse()
+          .map((code) => String.fromCharCode(Number(code)))
+          .join('');
+        const link = document.createElement('a');
+        link.href = `mailto:${address}`;
+        link.textContent = address;
+        protectedEmail.replaceChildren(link);
+        protectedEmail.removeAttribute('data-address-codes');
+      }
+    </script>
+  </section>
+</PageLayout>
+
+<style>
+  .imprint-content {
+    max-width: 42rem;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-surface);
+  }
+
+  .imprint-content h2 {
+    margin: 1.75rem 0 0.6rem;
+    font-size: 1.15rem;
+  }
+
+  .imprint-content h2:first-child {
+    margin-top: 0;
+  }
+
+  .imprint-content address {
+    color: var(--color-text-muted);
+    font-style: normal;
+  }
+
+  .imprint-content p {
+    margin-top: 0;
+  }
+
+  .email-note {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+</style>

@@ -1,4 +1,10 @@
 ---
+interface Props {
+  hideNav?: boolean;
+}
+
+const { hideNav = false } = Astro.props;
+
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/ueber-uns', label: 'Über uns' },
@@ -15,21 +21,26 @@ function isActive(href: string) {
 }
 ---
 
-<header class="site-header">
-  <div class="site-header__inner">
-    <a class="site-header__brand" href="/">Gravel Club Ulm</a>
-    <nav class="site-nav" aria-label="Hauptnavigation">
-      <ul>
-        {
-          navItems.map((item) => (
-            <li>
-              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+  <header class="site-header">
+    <div class="site-header__inner">
+    <a class="site-header__brand" href="/" aria-label="Gravel Club Ulm – Startseite">
+      <img src="/favicon.png" width="42" height="42" alt="" />
+      <span>Gravel Club <span>Ulm</span></span>
+    </a>
+    {!hideNav && (
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <ul>
+          {
+            navItems.map((item) => (
+              <li>
+                <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    )}
   </div>
 </header>

@@ -1,21 +1,18 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import PageLayout from '../layouts/PageLayout.astro';
 
 const success = Astro.url.searchParams.get('success') === '1';
 const error = Astro.url.searchParams.get('error') === '1';
 ---
 
-<BaseLayout title="Kontakt" description="Kontakt zum Gravel Club Ulm.">
-  <section class="page-header">
-    <h1>Kontakt</h1>
-    <p>
-      <!-- TODO: Echte Kontaktdaten ergänzen (E-Mail, Ansprechpartner, ggf. Social Media). -->
-      Fragen, Anregungen oder Lust, bei der nächsten Tour mitzufahren? Schreibt uns
-      über das folgende Formular.
-    </p>
-  </section>
-
-  <form id="contact-form" method="post" action="/api/contact" novalidate>
+<PageLayout
+  title="Kontakt"
+  description="Kontakt zum Gravel Club Ulm."
+  eyebrow="GRAVEL CLUB ULM · SCHREIB UNS"
+  intro="Fragen, Anregungen oder Lust, bei der nächsten Tour mitzufahren? Schreibt uns über das folgende Formular."
+  hideNav={true}
+>
+  <form id="contact-form" class="contact-form" method="post" action="/api/contact" novalidate>
     <div class="form-field">
       <label for="name">Name</label>
       <input type="text" id="name" name="name" autocomplete="name" required />
@@ -79,4 +76,19 @@ const error = Astro.url.searchParams.get('error') === '1';
       }
     });
   </script>
-</BaseLayout>
+</PageLayout>
+
+<style>
+  .contact-form {
+    max-width: 44rem;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-surface);
+  }
+
+  .contact-form button {
+    border-radius: 5px;
+    padding: 0.85rem 1.2rem;
+  }
+</style>

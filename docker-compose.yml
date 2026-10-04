@@ -18,18 +18,6 @@ services:
       - "traefik.http.routers.gcu-web.tls.certresolver=myresolver"
       - "traefik.http.routers.gcu-web.service=gcu-web"
 
-      # www redirects to the bare domain, permanently.
-      - "traefik.http.routers.gcu-web-www.rule=Host(`www.gravelclub-ulm.de`)"
-      - "traefik.http.routers.gcu-web-www.entrypoints=websecure"
-      - "traefik.http.routers.gcu-web-www.tls.certresolver=myresolver"
-      - "traefik.http.routers.gcu-web-www.middlewares=gcu-www-redirect"
-      - "traefik.http.routers.gcu-web-www.service=gcu-web"
-      - "traefik.http.middlewares.gcu-www-redirect.redirectregex.regex=^https://www\\.gravelclub-ulm\\.de/(.*)"
-      - "traefik.http.middlewares.gcu-www-redirect.redirectregex.replacement=https://gravelclub-ulm.de/$${1}"
-      - "traefik.http.middlewares.gcu-www-redirect.redirectregex.permanent=true"
-
-      - "traefik.http.services.gcu-web.loadbalancer.server.port=4321"
-
 networks:
   traefik:
     external: true

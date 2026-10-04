@@ -1,34 +1,535 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Gravel Club Ulm">
-  <section class="page-header">
-    <h1>Gravel Club Ulm</h1>
-    <p>
-      <!-- TODO: Echten Einleitungstext über den Verein ergänzen. -->
-      Willkommen beim Gravel Club Ulm! Wir sind ein Verein für alle, die Gravel- und
-      Radtouren rund um Ulm lieben. Hier findet ihr Infos zum Verein, unsere Touren
-      und aktuelle Neuigkeiten.
-    </p>
-    <a class="button" href="/kontakt">Mitmachen &amp; Kontakt aufnehmen</a>
-  </section>
+<BaseLayout
+  title="Hier entsteht etwas Neues"
+  description="Der Gravel Club Ulm bekommt eine neue Website. Bis dahin: rauf aufs Rad und raus ins Grüne."
+  hideChrome={true}
+>
+  <div class="coming-soon">
+    <header class="coming-soon__header">
+      <a class="brand" href="/" aria-label="Gravel Club Ulm – Startseite">
+        <img class="brand__mark" src="/favicon.png" alt="" />
+        <span class="brand__name">Gravel Club <span>Ulm</span></span>
+      </a>
+      <a class="header-link" href="/kontakt"
+        >Sag Hallo <span aria-hidden="true">↗</span></a
+      >
+    </header>
 
-  <section>
-    <h2>Auf einen Blick</h2>
-    <ul class="post-list">
-      <li class="post-list__item">
-        <h3><a href="/ueber-uns">Über uns</a></h3>
-        <p>Wer wir sind und wofür der Verein steht.</p>
-      </li>
-      <li class="post-list__item">
-        <h3><a href="/touren">Touren</a></h3>
-        <p>Unsere regelmäßigen Gravel- und Radtouren rund um Ulm.</p>
-      </li>
-      <li class="post-list__item">
-        <h3><a href="/blog">Blog</a></h3>
-        <p>Neuigkeiten, Ankündigungen und Tourberichte.</p>
-      </li>
-    </ul>
-  </section>
+    <section class="hero" aria-label="Der neue Auftritt des Gravel Club Ulm">
+      <section class="hero__copy" aria-labelledby="hero-title">
+        <p class="eyebrow">
+          <span aria-hidden="true"></span> Eine neue Webseite ist unterwegs
+        </p>
+        <h1 id="hero-title">Hier entsteht<br />etwas <em>Neues.</em></h1>
+        <p class="hero__description">
+          Der Gravel Club Ulm bekommt einen neuen digitalen Treffpunkt. Wir sind
+          ein loser Verbund radbegeisterter Menschen und lieben Graveltouren
+          rund um Ulm.<br>Bis es so weit ist: rauf aufs Rad und raus ins Grüne.
+        </p>
+        <a class="contact-link" href="/kontakt"
+          >Lern uns kennen <span aria-hidden="true">↗</span></a
+        >
+        <p class="hero__note">
+          <span aria-hidden="true">✳</span> Frische Website. Gleiche Liebe zum Draußensein.
+        </p>
+      </section>
+
+      <div class="hero__art">
+        <div class="art-stamp" aria-hidden="true">
+          <span>LOS,</span><span>RAUS!</span>
+        </div>
+        <svg
+          class="bike"
+          viewBox="0 0 780 560"
+          role="img"
+          aria-labelledby="bike-title"
+        >
+          <title id="bike-title">
+            Ein grünes Gravelbike mit orangefarbenen Details
+          </title>
+          <defs>
+            <linearGradient id="bike-frame" x1=".12" y1=".9" x2=".88" y2=".1">
+              <stop offset="0" stop-color="#236958"></stop>
+              <stop offset="1" stop-color="#538b6e"></stop>
+            </linearGradient>
+          </defs>
+          <!-- Soft, rolling terrain behind the bike -->
+          <circle class="sun" cx="438" cy="248" r="198"></circle>
+          <path
+            class="landscape"
+            d="M82 399c80-74 139-62 202-24 52 31 88 27 140-13 54-42 110-54 181-10 42 26 72 35 115 14v93H82z"
+          ></path>
+          <path
+            class="landscape-line"
+            d="M90 444c78-49 140-51 205-21 63 29 103 24 159-11 60-37 103-40 172-8 39 18 64 23 95 12"
+          ></path>
+
+          <!-- Wheels -->
+          <circle class="tire" cx="190" cy="398" r="126"></circle>
+          <circle class="wheel" cx="190" cy="398" r="112"></circle>
+          <circle class="hub" cx="190" cy="398" r="8"></circle>
+          <circle class="tire" cx="594" cy="398" r="126"></circle>
+          <circle class="wheel" cx="594" cy="398" r="112"></circle>
+          <circle class="hub" cx="594" cy="398" r="8"></circle>
+
+          <!-- Spokes -->
+          <g class="spokes">
+            <path d="M190 286v224M78 398h224M111 319l158 158M111 477l158-158"
+            ></path>
+            <path d="M594 286v224M482 398h224M515 319l158 158M515 477l158-158"
+            ></path>
+          </g>
+
+          <!-- Frame and fork -->
+          <g class="frame">
+            <path d="m190 398 144-185 66 185H190l144-185 125-12-59 197"></path>
+            <path d="m459 201 135 197"></path>
+            <path d="m334 213-17-26h-45"></path>
+            <path d="m459 201 17-30h43"></path>
+          </g>
+          <path class="accent-line" d="m334 213 66 185"></path>
+
+          <!-- Crank, chain, saddle, bars -->
+          <circle class="crank" cx="400" cy="398" r="36"></circle>
+          <circle class="crank-inner" cx="400" cy="398" r="8"></circle>
+          <path class="chain" d="m190 398 210-13m-210 20 210 12"></path>
+          <path class="detail" d="m310 188 48-4m-55-3 7 7m-8-8-5 8"></path>
+          <path class="detail" d="m474 170 50-2m-8-8 8 8-8 8"></path>
+          <path class="detail-orange" d="m190 398 37-62"></path>
+        </svg>
+        <span class="art-caption" aria-hidden="true"
+          >Gute Wege warten nicht.</span
+        >
+      </div>
+    </section>
+
+    <footer class="coming-soon__footer">
+      <span>Gravel Club Ulm</span>
+      <span class="footer-center"
+        ><span aria-hidden="true">●</span> Ulm &amp; Umgebung</span
+      >
+      <span class="footer-links"
+        ><a href="/kontakt">Kontakt</a><a href="/impressum">Impressum</a></span
+      >
+    </footer>
+  </div>
 </BaseLayout>
+
+<style>
+  :global(:root) {
+    --ink: #18372f;
+    --muted: #64766f;
+    --paper: #f6f5ee;
+    --green: #286c58;
+    --orange: #e47d4c;
+  }
+
+  :global(body) {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .coming-soon {
+    min-height: 100svh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0 clamp(1.25rem, 6vw, 6.5rem);
+    background-image: radial-gradient(#214b3f12 0.7px, transparent 0.7px);
+    background-size: 7px 7px;
+  }
+
+  .coming-soon__header,
+  .coming-soon__footer {
+    width: min(100%, 1440px);
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .coming-soon__header {
+    min-height: 104px;
+    border-bottom: 1px solid #18372f24;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .brand__mark {
+    width: 42px;
+    height: 42px;
+    display: block;
+    flex: 0 0 42px;
+    object-fit: contain;
+  }
+
+  .brand__name {
+    font-size: 0.95rem;
+    font-weight: 750;
+    letter-spacing: -0.035em;
+  }
+
+  .brand__name span {
+    color: var(--green);
+  }
+
+  .header-link,
+  .coming-soon__footer a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 650;
+  }
+
+  .header-link span {
+    color: var(--orange);
+  }
+
+  .hero {
+    width: min(100%, 1440px);
+    flex: 1;
+    min-height: 630px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: minmax(390px, 0.88fr) minmax(0, 1.12fr);
+    align-items: center;
+    gap: clamp(1rem, 4vw, 5rem);
+    padding-block: clamp(3rem, 8vh, 6rem);
+  }
+
+  .hero__copy {
+    position: relative;
+    z-index: 1;
+    padding-block: 1.5rem;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 1.6rem;
+    color: var(--green);
+    font-size: 0.73rem;
+    font-weight: 750;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 0 5px #e47d4c1c;
+  }
+
+  h1 {
+    max-width: 700px;
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(4rem, 7.8vw, 7.8rem);
+    font-weight: 500;
+    letter-spacing: -0.075em;
+    line-height: 0.91;
+  }
+
+  h1 em {
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  .hero__description {
+    max-width: 480px;
+    margin: 1.8rem 0 1.5rem;
+    color: var(--muted);
+    font-size: clamp(1rem, 1.25vw, 1.14rem);
+    line-height: 1.8;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.92rem 1.2rem;
+    border-radius: 5px;
+    background: var(--ink);
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 650;
+    transition:
+      background-color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .contact-link:hover {
+    background: var(--green);
+    transform: translateY(-2px);
+  }
+  .contact-link span {
+    color: #f5a174;
+  }
+  .contact-link:focus-visible,
+  .header-link:focus-visible,
+  .coming-soon__footer a:focus-visible {
+    outline: 3px solid var(--orange);
+    outline-offset: 4px;
+  }
+
+  .hero__note {
+    margin: 1.5rem 0 0;
+    color: #83918b;
+    font-size: 0.8rem;
+  }
+
+  .hero__note span {
+    padding-right: 0.35rem;
+    color: var(--orange);
+  }
+
+  .hero__art {
+    min-width: 0;
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1.2;
+  }
+
+  .bike {
+    width: 118%;
+    max-width: 900px;
+    overflow: visible;
+    transform: translate(-2%, 3%);
+  }
+
+  .sun {
+    fill: #e8e9d9;
+  }
+  .landscape {
+    fill: #e2e8dc;
+  }
+  .landscape-line {
+    fill: none;
+    stroke: #b9c8b9;
+    stroke-width: 2;
+    stroke-dasharray: 4 9;
+  }
+  .tire {
+    fill: none;
+    stroke: #244237;
+    stroke-width: 12;
+  }
+  .wheel {
+    fill: none;
+    stroke: #9ba99d;
+    stroke-width: 2;
+  }
+  .hub {
+    fill: #e47d4c;
+    stroke: #f6f5ee;
+    stroke-width: 4;
+  }
+  .spokes {
+    fill: none;
+    stroke: #a9b6a8;
+    stroke-width: 1.5;
+  }
+  .frame {
+    fill: none;
+    stroke: url(#bike-frame);
+    stroke-width: 13;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .accent-line {
+    fill: none;
+    stroke: #e47d4c;
+    stroke-width: 5;
+    stroke-linecap: round;
+  }
+  .crank {
+    fill: #f6f5ee;
+    stroke: #244237;
+    stroke-width: 7;
+  }
+  .crank-inner {
+    fill: #e47d4c;
+  }
+  .chain {
+    fill: none;
+    stroke: #687b70;
+    stroke-width: 2;
+    stroke-dasharray: 3 4;
+  }
+  .detail {
+    fill: none;
+    stroke: #244237;
+    stroke-width: 9;
+    stroke-linecap: round;
+  }
+  .detail-orange {
+    fill: none;
+    stroke: #e47d4c;
+    stroke-width: 8;
+    stroke-linecap: round;
+  }
+
+  .art-stamp {
+    position: absolute;
+    z-index: 1;
+    top: 5%;
+    right: 9%;
+    width: 92px;
+    height: 92px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e47d4c;
+    border-radius: 50%;
+    color: #c7663c;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    transform: rotate(11deg);
+  }
+
+  .art-caption {
+    position: absolute;
+    right: 1%;
+    bottom: 9%;
+    color: var(--green);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    transform: rotate(-5deg);
+  }
+
+  .coming-soon__footer {
+    min-height: 76px;
+    border-top: 1px solid #18372f24;
+    color: #78867e;
+    font-size: 0.77rem;
+  }
+
+  .coming-soon__footer a {
+    font-size: inherit;
+  }
+  .footer-links {
+    display: inline-flex;
+    gap: 1rem;
+  }
+  .footer-center span {
+    padding-right: 0.4rem;
+    color: var(--orange);
+    font-size: 0.55rem;
+  }
+
+  @media (min-width: 1500px) {
+    .hero {
+      grid-template-columns: minmax(500px, 0.9fr) minmax(0, 1.1fr);
+    }
+  }
+
+  @media (max-width: 850px) {
+    .coming-soon {
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+    .coming-soon__header {
+      min-height: 82px;
+    }
+    .hero {
+      min-height: 0;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding-block: 4rem 2.5rem;
+    }
+    .hero__copy {
+      padding: 0;
+    }
+    h1 {
+      font-size: clamp(4.5rem, 13vw, 7rem);
+    }
+    .hero__description {
+      max-width: 560px;
+    }
+    .hero__art {
+      width: min(100%, 660px);
+      margin: -1rem auto -1.5rem;
+    }
+    .bike {
+      width: 110%;
+    }
+    .art-stamp {
+      top: 4%;
+      right: 8%;
+      width: 76px;
+      height: 76px;
+      font-size: 0.65rem;
+    }
+    .art-caption {
+      bottom: 7%;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .coming-soon {
+      padding-inline: 1.15rem;
+    }
+    .coming-soon__header {
+      min-height: 72px;
+    }
+    .brand__mark {
+      width: 36px;
+      height: 36px;
+    }
+    .brand__name {
+      font-size: 0.85rem;
+    }
+    .hero {
+      padding-top: 3.5rem;
+    }
+    .eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+    }
+    h1 {
+      font-size: clamp(3.65rem, 16vw, 5.3rem);
+    }
+    .hero__description {
+      font-size: 0.98rem;
+    }
+    .hero__art {
+      width: calc(100% + 1.4rem);
+      margin-inline: -0.7rem;
+    }
+    .art-stamp {
+      right: 5%;
+    }
+    .art-caption {
+      right: 2%;
+      font-size: 0.85rem;
+    }
+    .coming-soon__footer {
+      min-height: 68px;
+      font-size: 0.68rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-link {
+      transition: none;
+    }
+  }
+</style>

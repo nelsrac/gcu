@@ -1,0 +1,90 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  pubDate: Date;
+  tags?: string[];
+}
+
+const { title, description, pubDate, tags } = Astro.props;
+const formattedDate = pubDate.toLocaleDateString('de-DE', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="blog-post">
+    <p class="blog-post__back"><a href="/blog">&larr; Zurück zur Übersicht</a></p>
+    <header class="blog-post__header">
+      <p class="page-eyebrow"><span aria-hidden="true"></span>GRAVEL CLUB ULM · BLOG</p>
+      <h1>{title}</h1>
+      <p class="post-meta"><time datetime={pubDate.toISOString()}>{formattedDate}</time></p>
+      {tags && tags.length > 0 && (
+        <p class="blog-post__tags">
+          {tags.map((tag) => <span class="tag">{tag}</span>)}
+        </p>
+      )}
+    </header>
+    <div class="post-content">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+
+  .blog-post__back {
+    margin: 0 0 2.5rem;
+    font-size: 0.9rem;
+  }
+
+  .blog-post__back a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .blog-post__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .blog-post__header h1 {
+    margin: 0 0 1rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 500;
+    letter-spacing: -0.075em;
+    line-height: 0.98;
+  }
+
+  .blog-post__header .post-meta {
+    margin: 0 0 0.75rem;
+  }
+
+  .blog-post__tags {
+    margin: 0;
+  }
+
+  .post-content {
+    line-height: 1.8;
+  }
+
+  .post-content :global(h2),
+  .post-content :global(h3) {
+    margin-top: 2rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 500;
+  }
+
+  .post-content :global(img) {
+    height: auto;
+    border-radius: 0.5rem;
+  }
+</style>

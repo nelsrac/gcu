@@ -6,13 +6,14 @@
   every component.
 */
 :root {
-  --color-bg: #fafaf8;
-  --color-surface: #ffffff;
-  --color-text: #23261f;
-  --color-text-muted: #5b5e56;
-  --color-border: #e1e2dc;
-  --color-accent: #4a6b3f;
+  --color-bg: #f6f5ee;
+  --color-surface: #fffefa;
+  --color-text: #18372f;
+  --color-text-muted: #64766f;
+  --color-border: #18372f24;
+  --color-accent: #286c58;
   --color-accent-contrast: #ffffff;
+  --color-warm: #e47d4c;
 
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
@@ -38,6 +39,8 @@ body {
   font-family: var(--font-sans);
   color: var(--color-text);
   background: var(--color-bg);
+  background-image: radial-gradient(#214b3f12 0.7px, transparent 0.7px);
+  background-size: 7px 7px;
   line-height: 1.55;
 }
 
@@ -70,13 +73,14 @@ a {
 /* Header */
 .site-header {
   border-bottom: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: transparent;
 }
 
 .site-header__inner {
-  max-width: var(--content-width);
+  max-width: 1440px;
+  min-height: 104px;
   margin: 0 auto;
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-2) clamp(1.25rem, 6vw, 6.5rem);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -85,10 +89,29 @@ a {
 }
 
 .site-header__brand {
-  font-weight: 700;
-  font-size: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
   color: var(--color-text);
   text-decoration: none;
+}
+
+.site-header__brand img {
+  display: block;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.site-header__brand > span {
+  font-size: 0.95rem;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+}
+
+.site-header__brand > span > span {
+  color: var(--color-accent);
 }
 
 .site-nav ul {
@@ -111,6 +134,13 @@ a {
   color: var(--color-accent);
 }
 
+.site-nav a:focus-visible,
+.site-header__brand:focus-visible,
+.site-footer a:focus-visible {
+  outline: 3px solid var(--color-warm);
+  outline-offset: 4px;
+}
+
 /* Main content */
 main {
   max-width: var(--content-width);
@@ -119,13 +149,51 @@ main {
   min-height: 60vh;
 }
 
+main.site-main--full-bleed {
+  max-width: none;
+  min-height: 100svh;
+  margin: 0;
+  padding: 0;
+}
+
 .page-header {
   margin-bottom: var(--space-4);
+}
+
+.page-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 1.2rem;
+  color: var(--color-accent);
+  font-size: 0.73rem;
+  font-weight: 750;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.page-eyebrow span {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: var(--color-warm);
+  box-shadow: 0 0 0 5px #e47d4c1c;
 }
 
 .page-header p {
   color: var(--color-text-muted);
   max-width: 60ch;
+  font-size: 1.08rem;
+}
+
+.page-header h1 {
+  margin-bottom: 1rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  line-height: 0.98;
 }
 
 .placeholder {
@@ -198,11 +266,17 @@ main {
 .form-field input,
 .form-field textarea {
   font: inherit;
-  padding: 0.6rem 0.7rem;
-  border: 1px solid var(--color-border);
-  border-radius: 0.35rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid #b9c8bf;
+  border-radius: 0.45rem;
   background: var(--color-surface);
   color: var(--color-text);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--color-accent);
+  outline: 3px solid #286c5833;
 }
 
 .form-field textarea {
@@ -233,7 +307,14 @@ button,
 
 button:hover,
 .button:hover {
-  opacity: 0.9;
+  background: #286c58;
+  transform: translateY(-2px);
+}
+
+button:focus-visible,
+.button:focus-visible {
+  outline: 3px solid var(--color-warm);
+  outline-offset: 4px;
 }
 
 .form-status {
@@ -257,17 +338,28 @@ button:hover,
 /* Footer */
 .site-footer {
   border-top: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: transparent;
   color: var(--color-text-muted);
 }
 
 .site-footer__inner {
-  max-width: var(--content-width);
+  max-width: 1440px;
   margin: 0 auto;
-  padding: var(--space-3);
+  padding: var(--space-3) clamp(1.25rem, 6vw, 6.5rem);
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
   justify-content: space-between;
   font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .site-header__inner {
+    min-height: 82px;
+    padding-inline: 1.15rem;
+  }
+
+  .site-footer__inner {
+    padding-inline: 1.15rem;
+  }
 }
