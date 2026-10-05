@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const events = await getCollection('events');
+const now = Date.now();
+const upcomingEvents = events
+  .filter((event) => event.data.startsAt.getTime() >= now)
+  .sort((a, b) => a.data.startsAt.getTime() - b.data.startsAt.getTime());
+const pastEvents = events
+  .filter((event) => event.data.startsAt.getTime() < now)
+  .sort((a, b) => b.data.startsAt.getTime() - a.data.startsAt.getTime());
+const sortedEvents = [...upcomingEvents, ...pastEvents];
+
+function formatDate(date: Date) {
+  return date.toLocaleString('de-DE', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Europe/Berlin',
+  });
+}
+---
+
+<PageLayout
+  title="Ausfahrten"
+  description="Kommende Gravel-Ausfahrten und gemeinsame Touren des Gravel Club Ulm."
+  eyebrow="GEMEINSAM UNTERWEGS"
+  intro="Unsere nächsten Gravel-Ausfahrten rund um Ulm – steig auf und fahr mit."
+>
+  {
+    sortedEvents.length === 0 ? (
+      <p class="placeholder">Aktuell sind keine Ausfahrten eingetragen. Schau bald wieder vorbei.</p>
+    ) : (
+      <ul class="post-list event-list">
+        {sortedEvents.map((event) => (
+          <li class="post-list__item event-card">
+            <p class="post-meta">
+              <time datetime={event.data.startsAt.toISOString()}>{formatDate(event.data.startsAt)}</time>
+            </p>
+            <h2><a href={`/ausfahrten/${event.id}`}>{event.data.title}</a></h2>
+            <p class="event-card__details">
+              {event.data.meetingPoint} · {event.data.distanceKm} km · {event.data.difficulty}
+            </p>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</PageLayout>
+
+<style>
+  .event-list {
+    max-width: 52rem;
+  }
+
+  .event-card h2 {
+    margin: 0 0 0.65rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+  }
+
+  .event-card h2 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .event-card h2 a:hover {
+    color: var(--color-accent);
+  }
+
+  .event-card__details {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+</style>

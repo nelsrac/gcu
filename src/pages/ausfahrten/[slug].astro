@@ -1,0 +1,138 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  return events.map((event) => ({
+    params: { slug: event.id },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+const formattedDate = event.data.startsAt.toLocaleString('de-DE', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  timeZone: 'Europe/Berlin',
+});
+---
+
+<PageLayout
+  title={event.data.title}
+  description={`${event.data.title} – Gravel-Ausfahrt des Gravel Club Ulm.`}
+  eyebrow={`AUSFAHRT · ${formattedDate}`}
+>
+  <section class="event-details" aria-label="Details zur Ausfahrt">
+    <dl>
+      <div>
+        <dt>Wann</dt>
+        <dd>{formattedDate}</dd>
+      </div>
+      <div>
+        <dt>Treffpunkt</dt>
+        <dd>{event.data.meetingPoint}</dd>
+      </div>
+      <div>
+        <dt>Strecke</dt>
+        <dd>{event.data.distanceKm} km</dd>
+      </div>
+      <div>
+        <dt>Wege</dt>
+        <dd>{event.data.roadPercent}/{event.data.gravelPercent} % Straße/Gravel</dd>
+      </div>
+      <div>
+        <dt>Höhenmeter</dt>
+        <dd>{event.data.elevationGainM} hm</dd>
+      </div>
+      <div>
+        <dt>Schwierigkeit</dt>
+        <dd>{event.data.difficulty}</dd>
+      </div>
+    </dl>
+    {event.data.registrationUrl && (
+      <p class="registration-link"><a class="button" href={event.data.registrationUrl}>Zur Anmeldung</a></p>
+    )}
+  </section>
+
+  <div class="event-description"><Content /></div>
+
+  <div class="komoot-embed">
+    <iframe
+      src={event.data.komootEmbedUrl}
+      title={`KOMOOT-Route: ${event.data.title}`}
+      width="100%"
+      height="700"
+      loading="lazy"
+      allow="fullscreen"
+      allowfullscreen
+    ></iframe>
+  </div>
+</PageLayout>
+
+<style>
+  .event-details {
+    max-width: 52rem;
+    margin-bottom: 2rem;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-surface);
+  }
+
+  .event-details dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 2rem;
+    margin: 0;
+  }
+
+  .event-details dt {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+  }
+
+  .event-details dd {
+    margin: 0.2rem 0 0;
+    font-weight: 650;
+  }
+
+  .registration-link {
+    margin: 1.5rem 0 0;
+  }
+
+  .event-description {
+    max-width: 52rem;
+    margin-bottom: 2rem;
+  }
+
+  .komoot-embed {
+    max-width: 52rem;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-surface);
+  }
+
+  .komoot-embed iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+  }
+
+  @media (max-width: 560px) {
+    .event-details dl {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .komoot-embed iframe {
+      height: 580px;
+    }
+  }
+</style>

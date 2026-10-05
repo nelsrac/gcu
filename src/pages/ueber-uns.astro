@@ -1,14 +1,95 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
+import PageLayout from "../layouts/PageLayout.astro";
 ---
 
-<PageLayout title="Über uns" description="Über den Gravel Club Ulm." eyebrow="DIE GRUPPE">
-  <div class="placeholder">
-    <!-- TODO: Echten Vereinstext ergänzen: Geschichte, Ziele, Mitgliederzahl, wer wir sind. -->
-    <p>
-      Hier steht bald mehr über den Gravel Club Ulm: wie der Verein entstanden ist,
-      wofür wir stehen, und wer bei uns mitfährt. Dieser Platzhaltertext wird durch
-      echte Vereinsinhalte ersetzt.
-    </p>
-  </div>
+<PageLayout
+  title="Über uns"
+  description="Über den Gravel Club Ulm."
+  eyebrow="Was uns ausmacht"
+>
+  <section aria-labelledby="wie-wir-fahren">
+    <div class="ride-style">
+      <div class="ride-style__copy">
+        <h2 id="wie-wir-fahren">Wie wir fahren</h2>
+        <p>
+          Bei unseren Ausfahrten geht es um <b>gemeinsames Unterwegssein</b>,
+          nicht um Bestzeiten. Wir <b>starten gemeinsam</b> und kommen <b
+            >gemeinsam an</b
+          >.
+        </p>
+        <p>
+          Am Berg, egal ob aufwärts oder abwärts, fährt jede/r Mitfahrende im
+          eigenen Tempo. Wir warten an Abzweigungen oder wenn sich die Gruppe
+          auseinander gezogen hat und sammeln uns regelmäßig.
+        </p>
+        <p>
+          Niemand wird zurückgelassen – das Tempo richtet sich nach der Person,
+          die gerade am langsamsten fährt. Jede/r Mitfahrende soll ein positives
+          Erlebnis auf unseren Fahrten erleben können.
+        </p>
+        <p>
+          Nach unseren Ausfahrten sitzen wir gern nochmal zusammen bei einem
+          kühlen Getränk oder auch einem Wurstsalat und tauschen uns über die
+          Ausfahrt hinaus aus.
+        </p>
+      </div>
+      <img
+        class="ride-style__photo"
+        src="/adventure.jpeg"
+        alt="Gravel-Fahrende auf einem schmalen Waldweg zwischen Bäumen"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </section>
+
 </PageLayout>
+
+<style>
+  .ride-style {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(9rem, 37vw, 25rem);
+    align-items: center;
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+    max-width: 64rem;
+  }
+
+  .ride-style h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.75rem, 3vw, 2.3rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+  }
+
+  .ride-style p {
+    max-width: 60ch;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+
+  .ride-style__photo {
+    display: block;
+    width: 100%;
+    justify-self: end;
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    object-fit: cover;
+    object-position: center 73%;
+  }
+
+  @media (max-width: 600px) {
+    .ride-style {
+      gap: 0.8rem;
+    }
+
+    .ride-style h2 {
+      font-size: 1.5rem;
+    }
+
+    .ride-style p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+  }
+</style>
