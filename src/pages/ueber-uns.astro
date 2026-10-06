@@ -7,7 +7,7 @@ import PageLayout from "../layouts/PageLayout.astro";
   description="Über den Gravel Club Ulm."
   eyebrow="Was uns ausmacht"
 >
-  <section aria-labelledby="wie-wir-fahren">
+  <section class="ride-section" aria-labelledby="wie-wir-fahren">
     <div class="ride-style">
       <div class="ride-style__copy">
         <h2 id="wie-wir-fahren">Wie wir fahren</h2>
@@ -43,15 +43,65 @@ import PageLayout from "../layouts/PageLayout.astro";
     </div>
   </section>
 
+  <section class="ride-section" aria-labelledby="ausruestung">
+    <div class="ride-style ride-style--reverse">
+      <div class="ride-style__copy">
+        <h2 id="ausruestung">Ausrüstung</h2>
+        <p>
+          <b>Helm und Licht</b> sind bei unseren Ausfahrten <b>Pflicht</b>. Die
+          Sicherheit jedes Einzelnen und der Gruppe ist uns sehr wichtig. Ob Du
+          mit Klickpedalen fährst, oder nicht, ist uns hingegen egal.
+        </p>
+        <p>
+          Für Werkzeug und einen passenden Ersatzschlauch bist du selbst
+          verantwortlich – besonders auf längeren Ausfahrten. Und solltest Du
+          trotz Ersatzschlauch eine helfende Hand benötigen ist auch dass für
+          uns selbstverständlich.
+        </p>
+        <p>
+          Um deine Verpflegung kümmerst du dich selbst. Ob Dir Wasser und ein
+          Apfel reicht, oder ob Du zusätzliche Energieversorgung in Form von
+          Gummibärchen oder einem Riegel brauchst, weißt nur Du selbst. Nimm vor
+          allem an warmen Sommertagen ausreichend Wasser mit.
+        </p>
+      </div>
+      <img
+        class="ride-style__photo"
+        src="/adventure.jpeg"
+        alt="Gravel-Fahrende auf einem schmalen Waldweg"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </section>
 </PageLayout>
 
 <style>
+  .ride-section + .ride-section {
+    margin-top: clamp(3rem, 7vw, 5rem);
+  }
+
   .ride-style {
     display: grid;
     grid-template-columns: minmax(0, 1fr) clamp(9rem, 37vw, 25rem);
     align-items: center;
     gap: clamp(1.5rem, 5vw, 3.5rem);
     max-width: 64rem;
+  }
+
+  .ride-style--reverse {
+    grid-template-columns: clamp(9rem, 37vw, 25rem) minmax(0, 1fr);
+    margin-right: auto;
+  }
+
+  .ride-style--reverse .ride-style__copy {
+    grid-column: 2;
+  }
+
+  .ride-style--reverse .ride-style__photo {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
   }
 
   .ride-style h2 {
